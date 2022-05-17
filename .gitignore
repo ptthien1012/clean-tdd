@@ -123,3 +123,6 @@ app.*.symbols
 
 # FVM ignore
 .fvm/flutter_sdk
+
+# Generate dart file
+*.g.dart
