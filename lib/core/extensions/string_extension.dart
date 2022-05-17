@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import '../core.dart';
 
 extension AppStringExtension on String {
-
   bool get isNullOrEmpty => isEmpty;
 
   bool get isNotNullOrEmpty => !isNullOrEmpty;
@@ -26,27 +25,31 @@ extension AppStringExtension on String {
 
   String get unSign {
     var result = this;
-    if (result is String) {
-      for (var i = 0; i < _vietnamese.length; i++) {
-        result = result.replaceAll(_vietnameseRegex[i], _vietnamese[i]);
-      }
+
+    for (var i = 0; i < _vietnamese.length; i++) {
+      result = result.replaceAll(_vietnameseRegex[i], _vietnamese[i]);
     }
+
     return result;
   }
 
   String get unSignLower => unSign.toUpperCase();
 
-  String hyphenFormat(String str) => '$this ${CoreConstants.hyphen} $str'.trim();
+  String hyphenFormat(String str) =>
+      '$this ${CoreConstants.hyphen} $str'.trim();
 
   String closureFormat(String str) => '$this ($str)'.trim();
 
-  String underlineFormat(String str) => '${this}${CoreConstants.underline}$str'.trim();
+  String underlineFormat(String str) =>
+      '${this}${CoreConstants.underline}$str'.trim();
 
   int toInt({int defaultValue = 0}) => int.tryParse(this) ?? defaultValue;
 
-  double toDouble({double defaultValue = 0.0}) => double.tryParse(this) ?? defaultValue;
+  double toDouble({double defaultValue = 0.0}) =>
+      double.tryParse(this) ?? defaultValue;
 
-  bool toBool() => trim().toLowerCase() == 'true' || trim().toLowerCase() == '1';
+  bool toBool() =>
+      trim().toLowerCase() == 'true' || trim().toLowerCase() == '1';
 
   String get formatCurrencyWithoutSymbol {
     final defaultValue = '0';
@@ -62,6 +65,7 @@ extension AppStringExtension on String {
     }
     return formatter.format(value);
   }
+
   bool get isLocalizeText {
     return startsWith('ui.') || startsWith('message.') || startsWith('error.');
   }

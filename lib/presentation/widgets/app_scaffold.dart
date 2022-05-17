@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:cleantdd/core/core.dart';
 
-class AppScaford<T extends Bloc> extends StatefulWidget {
-  const AppScaford({
+class AppScaffold<T extends Bloc> extends StatefulWidget {
+  const AppScaffold({
     Key? key,
     required this.body,
     this.title,
     this.isBack = true,
-    this.onReveiveArguments,
+    this.onReceiveArguments,
     this.onWillPop,
     this.padding = const EdgeInsets.all(Dimens.size16),
     this.safeArea = true,
@@ -17,7 +17,7 @@ class AppScaford<T extends Bloc> extends StatefulWidget {
   }) : super(key: key);
   final Widget body;
   final Widget? title;
-  final Future Function(Object? params, T? bloc)? onReveiveArguments;
+  final Future Function(Object? params, T? bloc)? onReceiveArguments;
   final Function()? onWillPop;
   final Function(T? bloc)? loadData;
   final bool isBack;
@@ -25,10 +25,10 @@ class AppScaford<T extends Bloc> extends StatefulWidget {
   final bool safeArea;
 
   @override
-  State<AppScaford<T>> createState() => _AppScafordState<T>();
+  State<AppScaffold<T>> createState() => _AppScaffoldState<T>();
 }
 
-class _AppScafordState<T extends Bloc> extends State<AppScaford<T>> {
+class _AppScaffoldState<T extends Bloc> extends State<AppScaffold<T>> {
   T? bloc;
 
   @override
@@ -36,15 +36,15 @@ class _AppScafordState<T extends Bloc> extends State<AppScaford<T>> {
     super.initState();
     bloc = GetIt.I.get<T>();
     WidgetsBinding.instance
-        ?.addPostFrameCallback((_) => widget.loadData?.call(bloc));
+        .addPostFrameCallback((_) => widget.loadData?.call(bloc));
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final args = ModalRoute.of(context)?.settings.arguments;
-    if (args != null && widget.onReveiveArguments != null) {
-      widget.onReveiveArguments?.call(args, bloc);
+    if (args != null && widget.onReceiveArguments != null) {
+      widget.onReceiveArguments?.call(args, bloc);
     }
   }
 

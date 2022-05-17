@@ -25,7 +25,6 @@ class ThemeBuilder {
       {required BuildContext context, bool isDark = false}) {
     return ThemeData(
       fontFamily: FontFamilyConstants.fontBeVietNam,
-      primaryColorBrightness: isDark ? Brightness.dark : Brightness.light,
       brightness: isDark ? Brightness.dark : Brightness.light,
       // unselectedWidgetColor: MyColors.buttonDisable,
       errorColor: MyColors.redColor,

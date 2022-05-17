@@ -2,23 +2,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:cleantdd/presentation/presentation.dart';
 import 'package:flutter/material.dart';
-import 'package:cleantdd/presentation/widgets/widgets.dart';
 
 class ContinentPage extends StatelessWidget {
   const ContinentPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AppScaford<ContinentBloc>(
+    return AppScaffold<ContinentBloc>(
       title: Text('Continent Detail'),
-      body: ContientMainWidget(),
+      body: ContinentMainWidget(),
       loadData: (bloc) => bloc?.add(OnGetContinent(code: 'SA')),
     );
   }
 }
 
-class ContientMainWidget extends StatelessWidget {
-  const ContientMainWidget({
+class ContinentMainWidget extends StatelessWidget {
+  const ContinentMainWidget({
     Key? key,
   }) : super(key: key);
 
